@@ -1,6 +1,6 @@
 ## Is Everything in Order? A Simple Way to Order Sentences
 
-This repo contains code for the EMNLP 2021 paper:
+This repo contains a fork of the original code for the EMNLP 2021 paper:
 
 **Is Everything in Order? A Simple Way to Order Sentences**
 
