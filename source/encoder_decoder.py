@@ -61,13 +61,9 @@ class EncoderDecoderTextDataset(Dataset):
             input_lengths = [min(len(ex), max_input_length) for ex in inputs]
             output_lengths = [min(len(ex), max_output_length) for ex in outputs]
 
-            inputs = [tokenizer.encode(
-                ex, add_special_tokens=False, max_length=max_input_length, pad_to_max_length=True)
-                for ex in inputs]
+            inputs = [ex + [tokenizer.pad_token_id] * (max_input_length - len(ex)) for ex in inputs]
 
-            outputs = [tokenizer.encode(
-                ex, add_special_tokens=False, max_length=max_output_length, pad_to_max_length=True)
-                for ex in outputs]
+            outputs = [ex + [tokenizer.pad_token_id] * (max_output_length - len(ex)) for ex in outputs]
 
             self.examples = {
                 "inputs": inputs,
@@ -94,7 +90,7 @@ class EncoderDecoderTextDataset(Dataset):
         max_length = outputs.shape[0]
         output_lengths = self.examples["output_lengths"][item]
         output_mask = torch.tensor([1] * output_lengths + [0] * (max_length - output_lengths))
-        
+
         return {
             "inputs": inputs,
             "input_mask": input_mask,

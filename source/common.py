@@ -2,7 +2,7 @@ import os
 import json
 import pandas as pd
 import torch.nn as nn
-from transformers import AutoModelWithLMHead, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 def init_model(model_name: str, device, do_lower_case: bool = False, args=None):
@@ -14,7 +14,7 @@ def init_model(model_name: str, device, do_lower_case: bool = False, args=None):
     :return: the model and tokenizer
     """
     tokenizer = AutoTokenizer.from_pretrained(model_name, do_lower_case=do_lower_case)
-    model = AutoModelWithLMHead.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
     # uncomment for using data parallel
 #    special_tokens = ["[shuffled]", "[orig]", "<eos>"]

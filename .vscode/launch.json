@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "train",
+            "type": "python",
+            "request": "launch",
+            "module": "source.encoder_decoder",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--train_file", "data/ROCStories/train.jsonl",
+                "--eval_data_file", "data/ROCStories/dev.jsonl",
+                "--out_dir", "outputs/reorder_exp/bart-large_ROCStories",
+                "--model_type", "facebook/bart-large",
+                "--model_name_or_path", "facebook/bart-large",
+                "--device", "1",
+                "--do_train",
+                "--do_eval",
+                "--save_total_limit", "1",
+                "--num_train_epochs", "1",
+                "--logging_steps", "3000",
+                "--gradient_accumulation_steps", "8",
+                "--train_batch_size", "4",
+                "--eval_batch_size", "8",
+                "--overwrite_out_dir",
+                "--max_input_length", "1024",
+                "--max_output_length", "40",
+                "--task", "index_with_sep"
+            ]
+        }
+    ]
+}

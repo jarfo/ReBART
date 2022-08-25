@@ -1,13 +1,13 @@
 #!/bin/bash
 
 
-DATA_DIR="data/arxiv-abs"
-OUT_DIR="outputs/reorder_exp/bart-large_arxiv"
+DATA_DIR="data/ROCStories"
+OUT_DIR="outputs/reorder_exp/bart-large_ROCStories"
 
 mkdir -p ${OUT_DIR}
 cp $0 ${OUT_DIR}
 
-python -m source.encoder_decoder \
+python3.8 -m source.encoder_decoder \
     --train_file ${DATA_DIR}/train.jsonl \
     --eval_data_file ${DATA_DIR}/dev.jsonl \
     --out_dir $OUT_DIR \
@@ -28,4 +28,3 @@ python -m source.encoder_decoder \
     --task index_with_sep \
     $@
 #--overwrite_cache \
-
